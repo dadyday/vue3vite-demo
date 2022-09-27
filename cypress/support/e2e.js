@@ -16,5 +16,21 @@
 // Import commands.js using ES2015 syntax:
 import "./commands";
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+chai.use((chai, utils) => {
+  chai.Assertion.addMethod("tag", function (name) {
+    const el = this._obj; // jQuery obj
+    // console.log(el);
+    const actual = el.prop("tagName").toUpperCase();
+    const expected = name.toUpperCase();
+    this.assert(
+      actual === expected,
+      `expect tag '${actual}' to be '${expected}'`
+    );
+  });
+  /* todo
+  chai.Assertion.addChainableMethod("tag", function (name) {
+      var obj = utils.flag(this, 'object');
+      new chai.Assertion(obj).to.have.prop(str);
+    }
+  ); //*/
+});

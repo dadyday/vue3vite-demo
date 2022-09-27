@@ -23,7 +23,11 @@ import HelloWorld from "./components/HelloWorld.vue";
     </div>
   </header>
 
-  <RouterView />
+  <RouterView v-slot="{ Component }">
+    <KeepAlive>
+      <component :is="Component" />
+    </KeepAlive>
+  </RouterView>
 </template>
 
 <style scoped>
