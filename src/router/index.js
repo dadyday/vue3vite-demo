@@ -10,6 +10,10 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/utils/async",
+      component: () => import("../views/utils/AsyncView.vue"),
+    },
+    {
       path: "/about",
       name: "about",
       // route level code-splitting
