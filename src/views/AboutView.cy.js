@@ -6,8 +6,9 @@ describe("<AboutView />", () => {
     cy.mount(AboutView);
 
     cy.get('button')
-      .contains('0.')
+      .contains('0th')
       .click()
-      .should('have.text', '1.')
+      .should('have.text', '1st')
+
   })
 })

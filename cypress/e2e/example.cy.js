@@ -20,14 +20,14 @@ describe("My First Test", () => {
       .contains("visit!")
       .find("button")
       .as("theButton")
-      .contains("1.")
+      .contains("1st")
       .click()
-      .should("have.text", "2.");
+      .should("have.text", "2nd");
     cy.screenshot();
 
     cy.get("@homeLink").click();
     cy.get("@aboutLink").click();
     cy.get("@theButton")
-      .should("have.text", "3.");
+      .should("have.text", "3rd");
   });
 });

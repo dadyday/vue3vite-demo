@@ -2,57 +2,38 @@
   <div class="about">
     <h1>This is an about page</h1>
     <div>
-      this is your <button @click="count++">{{ count }}.</button> visit!
+      this is your <button @click="count++">{{ countWord }}</button> visit!
     </div>
+    <hr />
   </div>
 </template>
 
 <script setup>
 import {
-  ref,
+  ref, computed,
   onMounted,
   onUpdated, // should not change a state
   onActivated, // only in KeepAlive
   onDeactivated, // only in KeepAlive
   onUnmounted,
 } from "vue";
-let count = ref(0);
+
+const count = ref(0);
+const countWord = computed(() => {
+  let digit = count.value % (count.value < 20 ? 20 : 10);
+  switch (digit) {
+    case 1: return count.value+'st';
+    case 2: return count.value+'nd';
+    case 3: return count.value+'rd';
+    default: return count.value+'th';
+  }
+});
 
 onActivated(() => {
   count.value++;
 });
+
 </script>
-
-<!--script>
-import { ref, toRefs } from 'vue'
-
-export default {
-  props: {
-    title: String
-  },
-  setup(props) {
-    const { title } = toRefs(props);
-    const count = ref(0);
-    return {
-      count,
-    };
-  },
-  activated() {
-    this.count++;
-  }
-}
-</script-->
-
-<!--script>
-export default {
-  data() {
-    return { count: 0 };
-  },
-  activated() {
-    this.count++;
-  }
-}
-</script-->
 
 <style lang="scss">
 @media (min-width: 1024px) {
